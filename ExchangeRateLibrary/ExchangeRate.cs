@@ -30,10 +30,9 @@ namespace ExchangeRateLibrary
         }
 
         //add bank info to the collection
-        public void AddBankInfo(int id, string bankName, string URI, string pattern, int indexBuy, int indexSold)
+        public void AddBankInfo(int id, string bankName, string URI, string pattern, int indexBuy, int indexSell)
         {
-            var newBankInfoItem = new BankInfo()
-                { ID = id, BankName = bankName, URI = URI, pattern = pattern, IndexBuy = indexBuy, IndexSell = indexSold }; //create new BankInfo item
+            var newBankInfoItem = new BankInfo(id, bankName, URI, pattern, indexBuy, indexSell); //create new BankInfo item
 
             CheckBankInfo(newBankInfoItem); //check that item with this ID doesn't exist
 
@@ -82,7 +81,7 @@ namespace ExchangeRateLibrary
                 throw new KeyNotFoundException("Can't find Bank with this ID ({bankID})");
 
             var URI = banksInfo[bankID].URI; //bank website
-            var pattern = banksInfo[bankID].pattern; //exchange pattern
+            var pattern = banksInfo[bankID].Pattern; //exchange pattern
             var neededIndex = operation == Operations.Sell ? banksInfo[bankID].IndexSell : banksInfo[bankID].IndexBuy; //get needed index
 
             return await ParseHTMLPage(URI, pattern, neededIndex);
