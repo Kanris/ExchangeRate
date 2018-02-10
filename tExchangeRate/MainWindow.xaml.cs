@@ -33,7 +33,7 @@ namespace tExchangeRate
             {
                 try
                 {
-                    var rateBuySell = await exchangeRate.GetBuySoldRate(bankID); //get buy and sell exchange rate
+                    var rateBuySell = await exchangeRate.GetBuySellRate(bankID); //get buy and sell exchange rate
                     var rateItem = InitializeNewExchangeRateItem(bankID, rateBuySell); //create new item for dgExchangeRate
 
                     exchangeRateItems.Add(rateItem); //add item to the dgExchangeRate

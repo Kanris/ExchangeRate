@@ -30,7 +30,7 @@ namespace ExchangeRateLibrary
         }
 
         //add bank info to the collection
-        public void AddBankInfo(int id, string bankName, string URI, string pattern, int indexBuy, int indexSell)
+        public void AddBankInfo(int id, string bankName, string URI, string pattern, int indexBuy, int indexSell )
         {
             var newBankInfoItem = new BankInfo(id, bankName, URI, pattern, indexBuy, indexSell); //create new BankInfo item
 
@@ -66,7 +66,7 @@ namespace ExchangeRateLibrary
         }
 
         //get buy and sell exchange rate by Bank ID
-        public async Task<Tuple<string, string>> GetBuySoldRate(int bankID)
+        public async Task<Tuple<string, string>> GetBuySellRate(int bankID)
         {
             string buyRate = await GetBuyRate(bankID); //get buy rate
             string sellRate = await GetSellRate(bankID); //get sell rate
