@@ -20,18 +20,18 @@ namespace ExchangeRateLibrary.Tests
             int buyIndex = 1;
             int sellIndex = 2;
 
-            exchangeRateItem = new BankInfo(bankID, bankName, bankURI, pattern, buyIndex, sellIndex);
+            exchangeRateItem = new BankInfo(bankID, bankName, bankURI, pattern, buyIndex, sellIndex); //initialize BankInfo item
 
-            exchangeRate = new ExchangeRate();
+            exchangeRate = new ExchangeRate(); //initialize ExchangeRate class
         }
 
         [TestMethod]
         public void AddBankInfoItem()
         {
-            exchangeRate.AddBankInfo(exchangeRateItem);
+            exchangeRate.AddBankInfo(exchangeRateItem); //add BankInfo item in collection
 
-            int expected = 1;
-            int actual = exchangeRate.BanksInfo.Count;
+            int expected = 1; //expected items count
+            int actual = exchangeRate.BanksInfo.Count; //actual items count
 
             Assert.AreEqual(expected, actual);
         }
@@ -40,7 +40,7 @@ namespace ExchangeRateLibrary.Tests
         [ExpectedException(typeof(Exception))]
         public void AddExistedBankInfoItem()
         {
-            exchangeRate.AddBankInfo(exchangeRateItem);
+            exchangeRate.AddBankInfo(exchangeRateItem); //trying to add in collection existed collection item 
         }
 
         [TestMethod]
@@ -49,16 +49,16 @@ namespace ExchangeRateLibrary.Tests
         {
             BankInfo bankInfo = null;
 
-            exchangeRate.AddBankInfo(bankInfo);
+            exchangeRate.AddBankInfo(bankInfo); //trying to add null object to collection
         }
 
         [TestMethod]
         public void RemoveBankInfoItem()
         {
-            exchangeRate.RemoveBankInfo(exchangeRateItem.ID);
+            exchangeRate.RemoveBankInfo(exchangeRateItem.ID); //remove bankinfo from collection
 
-            int expected = 0;
-            int actual = exchangeRate.BanksInfo.Count;
+            int expected = 0; //expected items count
+            int actual = exchangeRate.BanksInfo.Count; //actual items count
 
             Assert.AreEqual(expected, actual);
         }
@@ -73,10 +73,10 @@ namespace ExchangeRateLibrary.Tests
             int buyIndex = 1;
             int sellIndex = 2;
 
-            exchangeRate.AddBankInfo(bankID, bankName, bankURI, pattern, buyIndex, sellIndex);
+            exchangeRate.AddBankInfo(bankID, bankName, bankURI, pattern, buyIndex, sellIndex); //add new item to collection
 
-            int expected = 1;
-            int actual = exchangeRate.BanksInfo.Count;
+            int expected = 1; //expected items count
+            int actual = exchangeRate.BanksInfo.Count; //actual items count
 
             Assert.AreEqual(expected, actual);        
         }
@@ -86,7 +86,7 @@ namespace ExchangeRateLibrary.Tests
         {
             string expected = "2690.00"; //check on web-site buy exchange rate (USD)
 
-            string actual = exchangeRate.GetBuyRate(1).Result;
+            string actual = exchangeRate.GetBuyRate(1).Result; //get buy rate from web-site
 
             Assert.AreEqual(expected, actual);
         }
@@ -96,7 +96,7 @@ namespace ExchangeRateLibrary.Tests
         {
             string expected = "2745.00"; //check on web-site sell exchange rate (USD)
 
-            string actual = exchangeRate.GetSellRate(1).Result; 
+            string actual = exchangeRate.GetSellRate(1).Result;  //get sell rate from web-site
 
             Assert.AreEqual(expected, actual);
         }
@@ -106,7 +106,7 @@ namespace ExchangeRateLibrary.Tests
         {
             var expected = new Tuple<string, string>("2690.00", "2745.00"); //check on web-site buy and sell exchange rate (USD)
 
-            var actual = exchangeRate.GetBuySellRate(1).Result;
+            var actual = exchangeRate.GetBuySellRate(1).Result; //get buy and sell rate from web-site
 
             Assert.AreEqual(expected, actual);
         }
