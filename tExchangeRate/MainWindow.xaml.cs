@@ -29,6 +29,8 @@ namespace tExchangeRate
 
         private async void DisplayRates()
         {
+            Overlay.Visibility = Visibility.Visible;
+
             foreach(var bankID in exchangeRate.BanksInfo.Keys)
             {
                 try
@@ -42,8 +44,9 @@ namespace tExchangeRate
                 {
                     MessageBox.Show(e.Message, "Error", MessageBoxButton.OK);
                 }
-
             }
+
+            Overlay.Visibility = Visibility.Collapsed;
         }
 
         //create new ExchangeRateItem for dgExchangeRate 

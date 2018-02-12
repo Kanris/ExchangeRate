@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
         xmlns:local="clr-namespace:tExchangeRate"
         mc:Ignorable="d"
         Title="Dollar Exchange Rates" Height="350" Width="525" WindowStartupLocation="CenterScreen" Initialized="Window_Initialized" Loaded="Window_Loaded" >
@@ -11,7 +13,7 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="18"></RowDefinition>
             <RowDefinition Height="80*"></RowDefinition>
         </Grid.RowDefinitions>
         <Menu HorizontalAlignment="Left" VerticalAlignment="Top">
@@ -23,6 +25,14 @@
                 <MenuItem x:Name="Menu_EditBank" Header="Edit bank" Click="Menu_EditBank_Click" />
             </MenuItem>
         </Menu>
+
+        <Grid x:Name="Overlay" Panel.ZIndex="1000" Grid.Row="1" Visibility="Collapsed">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity=".5"/>
+            </Grid.Background>
+            <fa:ImageAwesome Icon="CircleOutlineNotch" Spin="True" Height="48" Width="48" />
+        </Grid>
+
         <DataGrid Grid.Row="1" Name="dgExchangeRate" IsReadOnly="True" MouseDoubleClick="dgExchangeRate_MouseDoubleClick" AutoGenerateColumns="False" Padding="10, 10, 10, 10" RowHeaderWidth="0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}" Visibility="Hidden" />
