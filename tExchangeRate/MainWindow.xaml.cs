@@ -74,6 +74,13 @@ namespace tExchangeRate
             {
                 exchangeRate.AddBankInfo(1, "Ощадбанк", "https://www.oschadbank.ua/ru/private/currency/currency_rates/", @"<td class=""text-right"">(\d+\.\d+)</td>", 1, 2);
                 exchangeRate.AddBankInfo(2, "УКРГАЗБАНК", "https://www.ukrgasbank.com/", @"<td class=""val"">(\d+\.\d+)</td>", 0, 1);
+                exchangeRate.AddBankInfo(3, "УКРГАЗБАНК", "https://www.ukrgasbank.com/", @"<td class=""val"">(\d+\.\d+)</td>", 0, 1);
+                exchangeRate.AddBankInfo(4, "УКРГАЗБАНК", "https://www.ukrgasbank.com/", @"<td class=""val"">(\d+\.\d+)</td>", 0, 1);
+                exchangeRate.AddBankInfo(5, "УКРГАЗБАНК", "https://www.ukrgasbank.com/", @"<td class=""val"">(\d+\.\d+)</td>", 0, 1);
+                exchangeRate.AddBankInfo(6, "УКРГАЗБАНК", "https://www.ukrgasbank.com/", @"<td class=""val"">(\d+\.\d+)</td>", 0, 1);
+                exchangeRate.AddBankInfo(7, "УКРГАЗБАНК", "https://www.ukrgasbank.com/", @"<td class=""val"">(\d+\.\d+)</td>", 0, 1);
+                exchangeRate.AddBankInfo(8, "УКРГАЗБАНК", "https://www.ukrgasbank.com/", @"<td class=""val"">(\d+\.\d+)</td>", 0, 1);
+                exchangeRate.AddBankInfo(9, "УКРГАЗБАНК", "https://www.ukrgasbank.com/", @"<td class=""val"">(\d+\.\d+)</td>", 0, 1);
             }
             catch (Exception e) //if bank id is already in the exchangeRate class 
             {
@@ -143,6 +150,9 @@ namespace tExchangeRate
                 {
                     MessageBox.Show(except.Message);
                 }
+            } else
+            {
+                MessageBox.Show("Click on item that needed to be edit");
             }
         }
 

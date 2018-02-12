@@ -28,18 +28,18 @@
 
         <Grid x:Name="Overlay" Panel.ZIndex="1000" Grid.Row="1" Visibility="Collapsed">
             <Grid.Background>
-                <SolidColorBrush Color="Black" Opacity=".5"/>
+                <SolidColorBrush Color="Black" Opacity=".8"/>
             </Grid.Background>
-            <fa:ImageAwesome Icon="CircleOutlineNotch" Spin="True" Height="48" Width="48" />
-            <Label x:Name="lblItemsLoading" Content="0 out of 0" Padding="0, 80, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontFamily="Segoe UI Semibold" />
+            <fa:ImageAwesome Icon="CircleOutlineNotch" Spin="True" Height="48" Width="48" Foreground="White" />
+            <Label x:Name="lblItemsLoading" Content="0 out of 0" Padding="0, 80, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontFamily="Segoe UI Semibold" Foreground="White" />
         </Grid>
 
-        <DataGrid Grid.Row="1" Name="dgExchangeRate" IsReadOnly="True" MouseDoubleClick="dgExchangeRate_MouseDoubleClick" AutoGenerateColumns="False" Padding="10, 10, 10, 10" RowHeaderWidth="0">
+        <DataGrid Grid.Row="1" Name="dgExchangeRate" IsReadOnly="True" MouseDoubleClick="dgExchangeRate_MouseDoubleClick" AutoGenerateColumns="False" Padding="10, 10, 10, 10" RowHeaderWidth="0" FontSize="16" FontFamily="Segoe UI Semibold">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}" Visibility="Hidden" />
-                <DataGridTextColumn Header="Банк" Binding="{Binding Path=Name}" />
-                <DataGridTextColumn Header="Покупка" Binding="{Binding Path=Buy}" />
-                <DataGridTextColumn Header="Продажа" Binding="{Binding Path=Sell}" />
+                <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}" Visibility="Hidden" FontSize="16" FontFamily="Segoe UI Semibold" />
+                <DataGridTextColumn Width="150" Header="Банк" Binding="{Binding Path=Name}" FontSize="16" FontFamily="Segoe UI Black" />
+                <DataGridTextColumn Header="Покупка" Binding="{Binding Path=Buy}" FontFamily="Segoe UI Semilight" FontSize="16" />
+                <DataGridTextColumn Header="Продажа" Binding="{Binding Path=Sell}" FontFamily="Segoe UI Semilight" FontSize="16" />
             </DataGrid.Columns>
         </DataGrid>
         
