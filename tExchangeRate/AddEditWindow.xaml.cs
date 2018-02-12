@@ -20,7 +20,7 @@ namespace tExchangeRate
     /// </summary>
     public partial class AddEditWindow : Window
     {
-        public enum Operations { Add, Edit, Delete }
+        public enum Operations { Add, Edit }
 
         private Operations oper;
         private BankInfo bankInfo;
@@ -55,8 +55,6 @@ namespace tExchangeRate
             txURI.Text = bankInfo.URI;
             txBuyIndex.Text = bankInfo.Buy.ToString();
             txSellIndex.Text = bankInfo.Sell.ToString();
-
-            if (oper == Operations.Delete) btnSave.Content = "Delete";
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -70,16 +68,13 @@ namespace tExchangeRate
                 var bankBuyIndex = BankIndex.Create(Convert.ToInt32(txBuyIndex.Text));
                 var bankSellIndex = BankIndex.Create(Convert.ToInt32(txSellIndex.Text));
 
-                if (oper == Operations.Edit || oper == Operations.Delete)
+                if (oper == Operations.Edit)
                     MainWindow.exchangeRate.RemoveBankInfo(this.bankInfo.ID);
 
                 BankInfo bankInfo;
 
-                if (oper != Operations.Delete)
-                {
-                    bankInfo = CreateBankInfo(bankID, bankName, bankURI, bankPattern, bankBuyIndex, bankSellIndex);
-                    MainWindow.exchangeRate.AddBankInfo(bankInfo);
-                }
+                bankInfo = CreateBankInfo(bankID, bankName, bankURI, bankPattern, bankBuyIndex, bankSellIndex);
+                MainWindow.exchangeRate.AddBankInfo(bankInfo);
 
                 this.DialogResult = true;
                 this.Close();
@@ -103,5 +98,15 @@ namespace tExchangeRate
             this.Close();
         }
 
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Are you sure?", "Delete confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                MainWindow.exchangeRate.RemoveBankInfo(this.bankInfo.ID);
+
+                this.DialogResult = true;
+                this.Close();
+            }
+        }
     }
 }

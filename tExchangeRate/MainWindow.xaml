@@ -21,7 +21,6 @@
             <MenuItem Header="Edit">
                 <MenuItem x:Name="Menu_AddBank" Header="Add bank" Click="Menu_AddBank_Click" />
                 <MenuItem x:Name="Menu_EditBank" Header="Edit bank" Click="Menu_EditBank_Click" />
-                <MenuItem x:Name="Menu_RemoveBank" Header="Remove bank" Click="Menu_RemoveBank_Click" />
             </MenuItem>
         </Menu>
         <DataGrid Grid.Row="1" Name="dgExchangeRate" IsReadOnly="True" MouseDoubleClick="dgExchangeRate_MouseDoubleClick" AutoGenerateColumns="False" Padding="10, 10, 10, 10" RowHeaderWidth="0">

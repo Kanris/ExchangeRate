@@ -131,25 +131,6 @@ namespace tExchangeRate
             }
         }
 
-        private void Menu_RemoveBank_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var selectedID = BankID.Create((dgExchangeRate.SelectedItem as ExchangeRateItem).ID);
-
-                var editWindow = new AddEditWindow(exchangeRate.BanksInfo[selectedID], AddEditWindow.Operations.Delete);
-
-                if (editWindow.ShowDialog() == true)
-                {
-                    UpdateDataGrid();
-                }
-            }
-            catch (Exception except)
-            {
-                MessageBox.Show(except.Message);
-            }
-        }
-
         private void dgExchangeRate_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var selectedItem = dgExchangeRate.SelectedItem as ExchangeRateItem;

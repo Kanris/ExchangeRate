@@ -21,6 +21,7 @@
         <TextBox x:Name="txSellIndex" HorizontalAlignment="Left" Height="23" Margin="76,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204"/>
         <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="205,237,0,0" VerticalAlignment="Top" Width="75" Click="btnSave_Click"/>
         <Button x:Name="btnClose" Content="Cancel" HorizontalAlignment="Left" Margin="125,237,0,0" VerticalAlignment="Top" Width="75" Click="btnClose_Click"/>
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="10,237,0,0" VerticalAlignment="Top" Width="61" Click="btnDelete_Click"/>
 
     </Grid>
 </Window>
