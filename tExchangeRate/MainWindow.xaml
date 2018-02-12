@@ -28,7 +28,7 @@
 
         <Grid x:Name="Overlay" Panel.ZIndex="1000" Grid.Row="1" Visibility="Collapsed">
             <Grid.Background>
-                <SolidColorBrush Color="Black" Opacity=".8"/>
+                <SolidColorBrush Color="Black" Opacity=".9"/>
             </Grid.Background>
             <fa:ImageAwesome Icon="CircleOutlineNotch" Spin="True" Height="48" Width="48" Foreground="White" />
             <Label x:Name="lblItemsLoading" Content="0 out of 0" Padding="0, 80, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontFamily="Segoe UI Semibold" Foreground="White" />
