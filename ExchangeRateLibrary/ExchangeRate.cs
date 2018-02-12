@@ -30,14 +30,27 @@ namespace ExchangeRateLibrary
         }
 
         //add bank info to the collection
-        public void AddBankInfo(BankID id, BankName bankName, BankURI URI, 
-            BankPattern pattern, BankIndex indexBuy, BankIndex indexSell )
+        public void AddBankInfo(int id, string bankName, string URI, 
+            string pattern, int indexBuy, int indexSell )
         {
-            var newBankInfoItem = new BankInfo(id, bankName, URI, pattern, indexBuy, indexSell); //create new BankInfo item
+            var newBankInfoItem = CreateBankInfo(id, bankName, URI, pattern, indexBuy, indexSell); //create new BankInfo item
 
             CheckBankInfo(newBankInfoItem); //check that item with this ID doesn't exist
 
-            banksInfo.Add(id, newBankInfoItem); //add new BankInfo item to collection
+            banksInfo.Add(newBankInfoItem.ID, newBankInfoItem); //add new BankInfo item to collection
+        }
+
+        private BankInfo CreateBankInfo(int ID, string name, string URI, string pattern, int buy, int sell)
+        {
+            var bankID = BankID.Create(ID);
+            var bankName = BankName.Create(name);
+            var bankURI = BankURI.Create(URI);
+            var bankPattern = BankPattern.Create(pattern);
+            var bankBuy = BankIndex.Create(buy);
+            var bankSell = BankIndex.Create(sell);
+
+            return new BankInfo(bankID, bankName, bankURI, bankPattern, bankBuy, bankSell);
+
         }
 
         //add bank info to the collection
