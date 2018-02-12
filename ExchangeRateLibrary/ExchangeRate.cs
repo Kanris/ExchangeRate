@@ -12,9 +12,9 @@ namespace ExchangeRateLibrary
     {
         private enum Operations { Buy, Sell }; //exchange operation type
 
-        private Dictionary<int, BankInfo> banksInfo;
+        private Dictionary<BankID, BankInfo> banksInfo;
 
-        public Dictionary<int, BankInfo> BanksInfo
+        public Dictionary<BankID, BankInfo> BanksInfo
         {
             get
             {
@@ -22,15 +22,16 @@ namespace ExchangeRateLibrary
             }
         }
 
-        public ExchangeRate() { banksInfo = new Dictionary<int, BankInfo>(); }
+        public ExchangeRate() { banksInfo = new Dictionary<BankID, BankInfo>(); }
 
-        public ExchangeRate(Dictionary<int, BankInfo> banksInfo)
+        public ExchangeRate(Dictionary<BankID, BankInfo> banksInfo)
         {
             this.banksInfo = banksInfo;
         }
 
         //add bank info to the collection
-        public void AddBankInfo(int id, string bankName, string URI, string pattern, int indexBuy, int indexSell )
+        public void AddBankInfo(BankID id, BankName bankName, BankURI URI, 
+            BankPattern pattern, BankIndex indexBuy, BankIndex indexSell )
         {
             var newBankInfoItem = new BankInfo(id, bankName, URI, pattern, indexBuy, indexSell); //create new BankInfo item
 
@@ -48,25 +49,25 @@ namespace ExchangeRateLibrary
         }
 
         //remove bank info by ID
-        public void RemoveBankInfo(int bankID)
+        public void RemoveBankInfo(BankID bankID)
         {
             banksInfo.Remove(bankID);
         }
 
         //get buy exchange rate by Bank ID
-        public async Task<string> GetBuyRate(int bankID)
+        public async Task<string> GetBuyRate(BankID bankID)
         {
             return await GetRate(bankID, Operations.Buy);
         }
 
         //get sell exchange rate by Bank ID
-        public async Task<string> GetSellRate(int bankID)
+        public async Task<string> GetSellRate(BankID bankID)
         {
             return await GetRate(bankID, Operations.Sell);
         }
 
         //get buy and sell exchange rate by Bank ID
-        public async Task<Tuple<string, string>> GetBuySellRate(int bankID)
+        public async Task<Tuple<string, string>> GetBuySellRate(BankID bankID)
         {
             string buyRate = await GetBuyRate(bankID); //get buy rate
             string sellRate = await GetSellRate(bankID); //get sell rate
@@ -75,14 +76,14 @@ namespace ExchangeRateLibrary
         }
 
         //get exchange rate
-        private async Task<string> GetRate(int bankID, Operations operation)
+        private async Task<string> GetRate(BankID bankID, Operations operation)
         {
             if (!banksInfo.ContainsKey(bankID)) //if Bank ID is not in collection throw exception
                 throw new KeyNotFoundException("Can't find Bank with this ID ({bankID})");
 
             var URI = banksInfo[bankID].URI; //bank website
             var pattern = banksInfo[bankID].Pattern; //exchange pattern
-            var neededIndex = operation == Operations.Sell ? banksInfo[bankID].IndexSell : banksInfo[bankID].IndexBuy; //get needed index
+            var neededIndex = operation == Operations.Sell ? banksInfo[bankID].Sell : banksInfo[bankID].Buy; //get needed index
 
             return await ParseHTMLPage(URI, pattern, neededIndex);
         }
