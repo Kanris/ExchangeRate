@@ -8,26 +8,83 @@ namespace ExchangeRateLibrary
 {
     public class BankInfo
     {
-        public int ID { set; get; } // Bank ID
+        public BankID ID { private set; get; } // Bank ID
 
-        public string BankName { set; get; } // Bank Name
+        public BankName Name { private set; get; } // Bank Name
 
-        public string URI { set; get; } //WebSite address
+        public BankURI URI { private set; get; } //WebSite address
 
-        public string Pattern { set; get; } //"html line" - where to get exchange value
+        public BankPattern Pattern { private set; get; } //"html line" - where to get exchange value
 
-        public int IndexBuy { set; get; } = 0; //which Regex.Match corresponds to the buy rate
+        public BankIndex Buy { private set; get; } //which Regex.Match corresponds to the buy rate
 
-        public int IndexSell { set; get; } = 1; //which Regex.Match corresponds to the sell rate
+        public BankIndex Sell { private set; get; } //which Regex.Match corresponds to the sell rate
 
-        public BankInfo(int ID, string bankName, string URI, string pattern, int indexBuy, int indexSell)
+        public BankInfo(BankID id, BankName name, BankURI uri,
+            BankPattern pattern, BankIndex buy, BankIndex sell)
         {
-            this.ID = ID;
-            this.BankName = bankName;
-            this.URI = URI;
+            CheckParameter(id, nameof(id));
+            CheckParameter(name, nameof(name));
+            CheckParameter(uri, nameof(uri));
+            CheckParameter(pattern, nameof(pattern));
+            CheckParameter(buy, nameof(buy));
+            CheckParameter(sell, nameof(sell));
+
+            this.ID = id;
+            this.Name = name;
+            this.URI = uri;
             this.Pattern = pattern;
-            this.IndexBuy = indexBuy;
-            this.IndexSell = indexSell;
+            this.Buy = buy;
+            this.Sell = sell;
+        }
+
+        public void ChangeID(BankID bankID)
+        {
+            CheckParameter(bankID, nameof(bankID));
+
+            this.ID = bankID;
+        }
+
+        public void ChangeBankName(BankName bankName)
+        {
+            CheckParameter(bankName, nameof(bankName));
+
+            this.Name = bankName;
+        }
+
+
+        public void ChangeURI(BankURI bankURI)
+        {
+            CheckParameter(bankURI, nameof(bankURI));
+
+            this.URI = bankURI;
+        }
+
+        public void ChangePattern(BankPattern bankPattern)
+        {
+            CheckParameter(bankPattern, nameof(bankPattern));
+
+            this.Pattern = bankPattern;
+        }
+
+        public void ChangeBuyIndex(BankIndex buyIndex)
+        {
+            CheckParameter(buyIndex, nameof(buyIndex));
+
+            this.Buy = buyIndex;
+        }
+
+        public void ChangeSellIndex(BankIndex sellIndex)
+        {
+            CheckParameter(sellIndex, nameof(sellIndex));
+
+            this.Sell = sellIndex;
+        }
+
+        private void CheckParameter<T>(T param, string paramName)
+        {
+            if (ReferenceEquals(param, null))
+                throw new ArgumentNullException($"{paramName} is null.");
         }
     }
 }
