@@ -13,12 +13,12 @@ namespace ExchangeRateLibrary.Tests
         [ClassInitialize]
         public static void InitializeClass(TestContext testContext)
         {
-            int bankID = 1;
-            string bankName = "Ощадбанк";
-            string bankURI = "https://www.oschadbank.ua/ru/private/currency/currency_rates/";
-            string pattern = @"<td class=""text-right"">(\d+\.\d+)</td>";
-            int buyIndex = 1;
-            int sellIndex = 2;
+            BankID bankID = BankID.Create(1);
+            BankName bankName = BankName.Create("Ощадбанк");
+            BankURI bankURI = BankURI.Create("https://www.oschadbank.ua/ru/private/currency/currency_rates/");
+            BankPattern pattern = BankPattern.Create(@"<td class=""text-right"">(\d+\.\d+)</td>");
+            BankIndex buyIndex = BankIndex.Create(1);
+            BankIndex sellIndex = BankIndex.Create(2);
 
             exchangeRateItem = new BankInfo(bankID, bankName, bankURI, pattern, buyIndex, sellIndex); //initialize BankInfo item
 
@@ -64,7 +64,7 @@ namespace ExchangeRateLibrary.Tests
         }
 
         [TestMethod]
-        public void AddBankInfoWithParams()
+        public void AddBankInfoFromParams()
         {
             int bankID = 1;
             string bankName = "Ощадбанк";
@@ -84,9 +84,10 @@ namespace ExchangeRateLibrary.Tests
         [TestMethod]
         public void GetBuyRate()
         {
-            string expected = "2690.00"; //check on web-site buy exchange rate (USD)
+            string expected = "2685.00"; //check on web-site buy exchange rate (USD)
 
-            string actual = exchangeRate.GetBuyRate(1).Result; //get buy rate from web-site
+            var neededBankID = BankID.Create(1);
+            string actual = exchangeRate.GetBuyRate(neededBankID).Result; //get buy rate from web-site
 
             Assert.AreEqual(expected, actual);
         }
@@ -94,9 +95,10 @@ namespace ExchangeRateLibrary.Tests
         [TestMethod]
         public void GetSellRate()
         {
-            string expected = "2745.00"; //check on web-site sell exchange rate (USD)
+            string expected = "2740.00"; //check on web-site sell exchange rate (USD)
 
-            string actual = exchangeRate.GetSellRate(1).Result;  //get sell rate from web-site
+            var neededBankID = BankID.Create(1);
+            string actual = exchangeRate.GetSellRate(neededBankID).Result;  //get sell rate from web-site
 
             Assert.AreEqual(expected, actual);
         }
@@ -104,9 +106,10 @@ namespace ExchangeRateLibrary.Tests
         [TestMethod]
         public void GetBuySellRate()
         {
-            var expected = new Tuple<string, string>("2690.00", "2745.00"); //check on web-site buy and sell exchange rate (USD)
+            var expected = new Tuple<string, string>("2685.00", "2740.00"); //check on web-site buy and sell exchange rate (USD)
 
-            var actual = exchangeRate.GetBuySellRate(1).Result; //get buy and sell rate from web-site
+            var neededBankID = BankID.Create(1);
+            var actual = exchangeRate.GetBuySellRate(neededBankID).Result; //get buy and sell rate from web-site
 
             Assert.AreEqual(expected, actual);
         }
