@@ -30,20 +30,27 @@ namespace tExchangeRate
         private async void DisplayRates()
         {
             Overlay.Visibility = Visibility.Visible;
+            var itemsCount = exchangeRate.BanksInfo.Count;
+            var currentItem = 0;
 
-            foreach(var bankID in exchangeRate.BanksInfo.Keys)
+            foreach (var bankID in exchangeRate.BanksInfo.Keys)
             {
                 try
                 {
+                    lblItemsLoading.Content = $"{currentItem} out of {itemsCount}";
+
                     var rateBuySell = await exchangeRate.GetBuySellRate(bankID); //get buy and sell exchange rate
                     var rateItem = InitializeNewExchangeRateItem(bankID, rateBuySell); //create new item for dgExchangeRate
 
                     exchangeRateItems.Add(rateItem); //add item to the dgExchangeRate
+
+                    currentItem++;
                 }
                 catch (Exception e) //if bankID is not exist catch Exception and show error
                 {
                     MessageBox.Show(e.Message, "Error", MessageBoxButton.OK);
                 }
+
             }
 
             Overlay.Visibility = Visibility.Collapsed;

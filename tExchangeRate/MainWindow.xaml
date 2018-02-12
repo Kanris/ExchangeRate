@@ -31,6 +31,7 @@
                 <SolidColorBrush Color="Black" Opacity=".5"/>
             </Grid.Background>
             <fa:ImageAwesome Icon="CircleOutlineNotch" Spin="True" Height="48" Width="48" />
+            <Label x:Name="lblItemsLoading" Content="0 out of 0" Padding="0, 80, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontFamily="Segoe UI Semibold" />
         </Grid>
 
         <DataGrid Grid.Row="1" Name="dgExchangeRate" IsReadOnly="True" MouseDoubleClick="dgExchangeRate_MouseDoubleClick" AutoGenerateColumns="False" Padding="10, 10, 10, 10" RowHeaderWidth="0">
