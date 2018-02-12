@@ -117,20 +117,25 @@ namespace tExchangeRate
 
         private void Menu_EditBank_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                var selectedID = BankID.Create((dgExchangeRate.SelectedItem as ExchangeRateItem).ID);
+            var selectedItem = dgExchangeRate.SelectedItem as ExchangeRateItem;
 
-                var addWindow = new AddEditWindow(exchangeRate.BanksInfo[selectedID], AddEditWindow.Operations.Edit);
-                
-                if (addWindow.ShowDialog() == true)
-                {
-                    UpdateDataGrid();
-                }
-            }
-            catch (Exception except)
+            if (!ReferenceEquals(selectedItem, null))
             {
-                MessageBox.Show(except.Message);
+                try
+                {
+                    var selectedID = BankID.Create(selectedItem.ID);
+
+                    var addWindow = new AddEditWindow(exchangeRate.BanksInfo[selectedID], AddEditWindow.Operations.Edit);
+
+                    if (addWindow.ShowDialog() == true)
+                    {
+                        UpdateDataGrid();
+                    }
+                }
+                catch (Exception except)
+                {
+                    MessageBox.Show(except.Message);
+                }
             }
         }
 
