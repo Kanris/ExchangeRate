@@ -8,14 +8,17 @@ namespace tExchangeRate
 {
     public class ExchangeRateItem
     {
+        public int ID { set; get; }
+
         public string Name { set; get; } // Bank Name
 
         public string Buy { set; get; } // Buy Rate
 
         public string Sell { set; get; } // Sell Rate
 
-        public ExchangeRateItem(string name, string buy, string sell)
+        public ExchangeRateItem(int id, string name, string buy, string sell)
         {
+            this.ID = id;
             this.Name = name;
             this.Buy = buy;
             this.Sell = sell;

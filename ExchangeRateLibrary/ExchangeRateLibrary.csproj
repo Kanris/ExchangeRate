@@ -40,7 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BankID.cs" />
+    <Compile Include="BankIndex.cs" />
     <Compile Include="BankInfo.cs" />
+    <Compile Include="BankName.cs" />
+    <Compile Include="BankPattern.cs" />
+    <Compile Include="BankURI.cs" />
     <Compile Include="ExchangeRate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

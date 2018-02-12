@@ -48,6 +48,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BankIDTest.cs" />
+    <Compile Include="BankIndexTest.cs" />
+    <Compile Include="BankNameTest.cs" />
+    <Compile Include="BankPatternTest.cs" />
+    <Compile Include="BankURITest.cs" />
     <Compile Include="ExchangeRateTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

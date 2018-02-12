@@ -12,7 +12,7 @@ namespace tExchangeRate
     {
 
         private ObservableCollection<ExchangeRateItem> exchangeRateItems; //dgExchangeRate items collection
-        private ExchangeRate exchangeRate; //class to receive exchange rate
+        public static ExchangeRate exchangeRate; //class to receive exchange rate
 
         public MainWindow()
         {
@@ -50,7 +50,7 @@ namespace tExchangeRate
         private ExchangeRateItem InitializeNewExchangeRateItem(int ID, Tuple<string, string> rateBuySell)
         {
             var bankID = BankID.Create(ID);
-            var newExchangeRateItem = new ExchangeRateItem(exchangeRate.BanksInfo[bankID].Name, rateBuySell.Item1, rateBuySell.Item2); //Item1 - buy rate, Item2 - sell rate
+            var newExchangeRateItem = new ExchangeRateItem(ID, exchangeRate.BanksInfo[bankID].Name, rateBuySell.Item1, rateBuySell.Item2); //Item1 - buy rate, Item2 - sell rate
 
             return newExchangeRateItem;
         }
@@ -87,6 +87,67 @@ namespace tExchangeRate
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Menu_AddBank_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var addWindow = new AddEditWindow();
+
+                if (addWindow.ShowDialog() == true)
+                {
+                    UpdateDataGrid();
+                }
+            }
+            catch (Exception excep)
+            {
+                MessageBox.Show(excep.Message);
+            }
+        }
+
+        private void UpdateDataGrid()
+        {
+            exchangeRateItems.Clear();
+            DisplayRates();
+        }
+
+        private void Menu_EditBank_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var selectedID = BankID.Create((dgExchangeRate.SelectedItem as ExchangeRateItem).ID);
+
+                var addWindow = new AddEditWindow(exchangeRate.BanksInfo[selectedID], AddEditWindow.Operations.Edit);
+                
+                if (addWindow.ShowDialog() == true)
+                {
+                    UpdateDataGrid();
+                }
+            }
+            catch (Exception except)
+            {
+                MessageBox.Show(except.Message);
+            }
+        }
+
+        private void Menu_RemoveBank_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var selectedID = BankID.Create((dgExchangeRate.SelectedItem as ExchangeRateItem).ID);
+
+                var addWindow = new AddEditWindow(exchangeRate.BanksInfo[selectedID], AddEditWindow.Operations.Delete);
+
+                if (addWindow.ShowDialog() == true)
+                {
+                    UpdateDataGrid();
+                }
+            }
+            catch (Exception except)
+            {
+                MessageBox.Show(except.Message);
+            }
         }
     }
 }
