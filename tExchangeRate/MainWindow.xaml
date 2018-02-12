@@ -16,12 +16,12 @@
         </Grid.RowDefinitions>
         <Menu HorizontalAlignment="Left" VerticalAlignment="Top">
             <MenuItem Header="File">
-                <MenuItem Header="Exit" />
+                <MenuItem x:Name="Menu_Exit" Header="Exit" Click="MenuItem_Click" />
             </MenuItem>
             <MenuItem Header="Edit">
-                <MenuItem Header="Add bank"/>
-                <MenuItem Header="Edit bank" />
-                <MenuItem Header="Remove bank" />
+                <MenuItem x:Name="Menu_AddBank" Header="Add bank"/>
+                <MenuItem x:Name="Menu_EditBank" Header="Edit bank" />
+                <MenuItem x:Name="Menu_RemoveBank" Header="Remove bank" />
             </MenuItem>
         </Menu>
         <DataGrid Grid.Row="1" Name="dgExchangeRate" AutoGenerateColumns="False" Padding="10, 10, 10, 10" RowHeaderWidth="0">
