@@ -47,9 +47,10 @@ namespace tExchangeRate
         }
 
         //create new ExchangeRateItem for dgExchangeRate 
-        private ExchangeRateItem InitializeNewExchangeRateItem(int bankID, Tuple<string, string> rateBuySell)
+        private ExchangeRateItem InitializeNewExchangeRateItem(int ID, Tuple<string, string> rateBuySell)
         {
-            var newExchangeRateItem = new ExchangeRateItem(exchangeRate.BanksInfo[bankID].BankName, rateBuySell.Item1, rateBuySell.Item2); //Item1 - buy rate, Item2 - sell rate
+            var bankID = BankID.Create(ID);
+            var newExchangeRateItem = new ExchangeRateItem(exchangeRate.BanksInfo[bankID].Name, rateBuySell.Item1, rateBuySell.Item2); //Item1 - buy rate, Item2 - sell rate
 
             return newExchangeRateItem;
         }
