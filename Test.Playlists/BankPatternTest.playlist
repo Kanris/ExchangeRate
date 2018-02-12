@@ -1,0 +1,1 @@
+<Playlist Version="1.0"><Add Test="ExchangeRateLibrary.Tests.BankPatternTest.CreateBankPattern_Empty" /><Add Test="ExchangeRateLibrary.Tests.BankPatternTest.CreateBankPattern_Normal" /><Add Test="ExchangeRateLibrary.Tests.BankPatternTest.ConvertBankPattern_ToString" /><Add Test="ExchangeRateLibrary.Tests.BankPatternTest.CreateBankPattern_Null" /></Playlist>
