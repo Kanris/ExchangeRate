@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tExchangeRate"
         mc:Ignorable="d"
-        Title="AddEditWindow" Height="300" Width="300" ResizeMode="NoResize">
+        Title="AddEditWindow" WindowStartupLocation="CenterScreen" Height="300" Width="300" ResizeMode="NoResize">
     <Grid>
         <Label x:Name="lID" Content="ID" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label Content="Name" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>

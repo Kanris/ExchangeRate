@@ -137,9 +137,9 @@ namespace tExchangeRate
             {
                 var selectedID = BankID.Create((dgExchangeRate.SelectedItem as ExchangeRateItem).ID);
 
-                var addWindow = new AddEditWindow(exchangeRate.BanksInfo[selectedID], AddEditWindow.Operations.Delete);
+                var editWindow = new AddEditWindow(exchangeRate.BanksInfo[selectedID], AddEditWindow.Operations.Delete);
 
-                if (addWindow.ShowDialog() == true)
+                if (editWindow.ShowDialog() == true)
                 {
                     UpdateDataGrid();
                 }
@@ -147,6 +147,30 @@ namespace tExchangeRate
             catch (Exception except)
             {
                 MessageBox.Show(except.Message);
+            }
+        }
+
+        private void dgExchangeRate_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var selectedItem = dgExchangeRate.SelectedItem as ExchangeRateItem;
+
+            if (!ReferenceEquals(selectedItem, null))
+            {
+                try
+                {
+                    var selectedID = BankID.Create(selectedItem.ID);
+
+                    var editWindow = new AddEditWindow(exchangeRate.BanksInfo[selectedID], AddEditWindow.Operations.Edit);
+
+                    if (editWindow.ShowDialog() == true)
+                    {
+                        UpdateDataGrid();
+                    }
+                }
+                catch (Exception excep)
+                {
+                    MessageBox.Show(excep.Message);
+                }
             }
         }
     }

@@ -24,7 +24,7 @@
                 <MenuItem x:Name="Menu_RemoveBank" Header="Remove bank" Click="Menu_RemoveBank_Click" />
             </MenuItem>
         </Menu>
-        <DataGrid Grid.Row="1" Name="dgExchangeRate" AutoGenerateColumns="False" Padding="10, 10, 10, 10" RowHeaderWidth="0">
+        <DataGrid Grid.Row="1" Name="dgExchangeRate" IsReadOnly="True" MouseDoubleClick="dgExchangeRate_MouseDoubleClick" AutoGenerateColumns="False" Padding="10, 10, 10, 10" RowHeaderWidth="0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}" Visibility="Hidden" />
                 <DataGridTextColumn Header="Банк" Binding="{Binding Path=Name}" />
