@@ -11,14 +11,26 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="80*"></RowDefinition>
         </Grid.RowDefinitions>
-        <DataGrid Name="dgExchangeRate" AutoGenerateColumns="False" Padding="10, 10, 10, 10" RowHeaderWidth="0">
+        <Menu HorizontalAlignment="Left" VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Exit" />
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Add bank"/>
+                <MenuItem Header="Edit bank" />
+                <MenuItem Header="Remove bank" />
+            </MenuItem>
+        </Menu>
+        <DataGrid Grid.Row="1" Name="dgExchangeRate" AutoGenerateColumns="False" Padding="10, 10, 10, 10" RowHeaderWidth="0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Банк" Binding="{Binding Path=Name}" />
                 <DataGridTextColumn Header="Покупка" Binding="{Binding Path=Buy}" />
                 <DataGridTextColumn Header="Продажа" Binding="{Binding Path=Sell}" />
             </DataGrid.Columns>
         </DataGrid>
+        
     </Grid>
 </Window>
