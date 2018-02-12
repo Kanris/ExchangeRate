@@ -18,7 +18,7 @@ namespace ExchangeRateLibrary
         public static BankID Create(int id)
         {
             if (id < 0)
-                throw new Exception($"Bank id ({id}) must me greater or equal to zero");
+                throw new Exception($"Bank id ({id}) must be greater or equal to zero");
 
             return new BankID(id);
         }
