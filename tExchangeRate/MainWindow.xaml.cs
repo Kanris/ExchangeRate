@@ -72,15 +72,16 @@ namespace tExchangeRate
 
             try
             {
-                exchangeRate.AddBankInfo(1, "Ощадбанк", "https://www.oschadbank.ua/ru/private/currency/currency_rates/", @"<td class=""text-right"">(\d+\.\d+)</td>", 1, 2);
+                /*exchangeRate.AddBankInfo(1, "Ощадбанк", "https://www.oschadbank.ua/ru/private/currency/currency_rates/", @"<td class=""text-right"">(\d+\.\d+)</td>", 1, 2);
                 exchangeRate.AddBankInfo(2, "УКРГАЗБАНК", "https://www.ukrgasbank.com/", @"<td class=""val"">(\d+\.\d+)</td>", 0, 1);
                 exchangeRate.AddBankInfo(3, "УКРГАЗБАНК", "https://www.ukrgasbank.com/", @"<td class=""val"">(\d+\.\d+)</td>", 0, 1);
-                exchangeRate.AddBankInfo(4, "УКРГАЗБАНК", "https://www.ukrgasbank.com/", @"<td class=""val"">(\d+\.\d+)</td>", 0, 1);
-                exchangeRate.AddBankInfo(5, "УКРГАЗБАНК", "https://www.ukrgasbank.com/", @"<td class=""val"">(\d+\.\d+)</td>", 0, 1);
-                exchangeRate.AddBankInfo(6, "УКРГАЗБАНК", "https://www.ukrgasbank.com/", @"<td class=""val"">(\d+\.\d+)</td>", 0, 1);
-                exchangeRate.AddBankInfo(7, "УКРГАЗБАНК", "https://www.ukrgasbank.com/", @"<td class=""val"">(\d+\.\d+)</td>", 0, 1);
-                exchangeRate.AddBankInfo(8, "УКРГАЗБАНК", "https://www.ukrgasbank.com/", @"<td class=""val"">(\d+\.\d+)</td>", 0, 1);
-                exchangeRate.AddBankInfo(9, "УКРГАЗБАНК", "https://www.ukrgasbank.com/", @"<td class=""val"">(\d+\.\d+)</td>", 0, 1);
+                exchangeRate.AddBankInfo(4, "УКРГАЗБАНК", "https://www.ukrgasbank.com/", @"<td class=""val"">(\d+\.\d+)</td>", 0, 1);*/
+                var resultsFromFile = FileHelper.ReadFromFile();
+
+                foreach (var item in resultsFromFile)
+                {
+                    exchangeRate.AddBankInfo(item);
+                }
             }
             catch (Exception e) //if bank id is already in the exchangeRate class 
             {
@@ -139,7 +140,7 @@ namespace tExchangeRate
                 {
                     var selectedID = BankID.Create(selectedItem.ID);
 
-                    var addWindow = new AddEditWindow(exchangeRate.BanksInfo[selectedID], AddEditWindow.Operations.Edit);
+                    var addWindow = new AddEditWindow(exchangeRate.BanksInfo[selectedID]);
 
                     if (addWindow.ShowDialog() == true)
                     {
@@ -166,7 +167,7 @@ namespace tExchangeRate
                 {
                     var selectedID = BankID.Create(selectedItem.ID);
 
-                    var editWindow = new AddEditWindow(exchangeRate.BanksInfo[selectedID], AddEditWindow.Operations.Edit);
+                    var editWindow = new AddEditWindow(exchangeRate.BanksInfo[selectedID]);
 
                     if (editWindow.ShowDialog() == true)
                     {

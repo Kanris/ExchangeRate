@@ -32,11 +32,11 @@ namespace tExchangeRate
             InitializeWindow(Operations.Add);
         }
 
-        public AddEditWindow(BankInfo bankInfo, Operations oper)
+        public AddEditWindow(BankInfo bankInfo)
         {
             InitializeComponent();
 
-            InitializeWindow(oper, bankInfo);
+            InitializeWindow(Operations.Edit, bankInfo);
         }
 
         public void InitializeWindow(Operations oper, BankInfo bankInfo = null)
@@ -69,12 +69,14 @@ namespace tExchangeRate
                 var bankSellIndex = BankIndex.Create(Convert.ToInt32(txSellIndex.Text));
 
                 if (oper == Operations.Edit)
+                {
                     MainWindow.exchangeRate.RemoveBankInfo(this.bankInfo.ID);
+                    FileHelper.DeleteFromFile(this.bankInfo);
+                }
 
-                BankInfo bankInfo;
-
-                bankInfo = CreateBankInfo(bankID, bankName, bankURI, bankPattern, bankBuyIndex, bankSellIndex);
+                var bankInfo = CreateBankInfo(bankID, bankName, bankURI, bankPattern, bankBuyIndex, bankSellIndex);
                 MainWindow.exchangeRate.AddBankInfo(bankInfo);
+                FileHelper.WriteInFile(bankInfo);
 
                 this.DialogResult = true;
                 this.Close();
@@ -103,6 +105,7 @@ namespace tExchangeRate
             if (MessageBox.Show("Are you sure?", "Delete confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 MainWindow.exchangeRate.RemoveBankInfo(this.bankInfo.ID);
+                FileHelper.DeleteFromFile(this.bankInfo);
 
                 this.DialogResult = true;
                 this.Close();
