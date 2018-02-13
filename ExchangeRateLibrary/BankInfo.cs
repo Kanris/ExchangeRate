@@ -81,6 +81,9 @@ namespace ExchangeRateLibrary
             this.Sell = sellIndex;
         }
 
+        public override string ToString()
+            => $"{ID}, {Name}, {URI}, {Pattern}, {Buy}, {Sell}";
+
         private void CheckParameter<T>(T param, string paramName)
         {
             if (ReferenceEquals(param, null))
