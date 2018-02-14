@@ -12,14 +12,17 @@ namespace tExchangeRate
     {
         private static string path = "BanksInfo.csv";
 
-        public static string Path { set; get; }
-
-        public static void WriteInFile(BankInfo bankInfo)
+        public static bool WriteInFile(BankInfo bankInfo)
         {
+            if (ReferenceEquals(bankInfo, null))
+                return false;
+
             using (var writer = new StreamWriter(new FileStream(path, FileMode.Append, FileAccess.Write)))
             {
                 writer.WriteLine(bankInfo.ToString());
             }
+
+            return true;
         }
 
         public static List<BankInfo> ReadFromFile()
@@ -40,8 +43,11 @@ namespace tExchangeRate
             return bankInfoArray;
         }
 
-        public static void DeleteFromFile(BankInfo bankInfo)
+        public static bool DeleteFromFile(BankInfo bankInfo)
         {
+            if (ReferenceEquals(bankInfo, null))
+                return false;
+
             var lines = new List<string>();
             var line = string.Empty;
 
@@ -60,6 +66,8 @@ namespace tExchangeRate
                 foreach (var item in lines)
                     outfile.WriteLine(item);
             }
+
+            return true;
         }
 
         private static BankInfo CreateBankInfo(string lineFromFile)
