@@ -73,7 +73,9 @@ namespace tExchangeRate
         private static BankInfo CreateBankInfo(string lineFromFile)
         {
             var items = lineFromFile.Split(',');
+
             items = items.Select(x => x.Trim()).ToArray();
+            items = items.Where(x => !String.IsNullOrEmpty(x)).ToArray(); //remove empty items
 
             if (items.Length == 6)
             {
