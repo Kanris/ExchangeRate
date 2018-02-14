@@ -75,14 +75,22 @@ namespace tExchangeRate
             var items = lineFromFile.Split(',');
             items = items.Select(x => x.Trim()).ToArray();
 
-            BankID bankID = BankID.Create(Convert.ToInt32(items[0]));
-            BankName bankName = BankName.Create(items[1]);
-            BankURI bankURI = BankURI.Create(items[2]);
-            BankPattern bankPattern = BankPattern.Create(items[3]);
-            BankIndex bankBuy = BankIndex.Create(Convert.ToInt32(items[4]));
-            BankIndex bankSell = BankIndex.Create(Convert.ToInt32(items[5]));
+            if (items.Length == 6)
+            {
+                BankID bankID = BankID.Create(Convert.ToInt32(items[0]));
+                BankName bankName = BankName.Create(items[1]);
+                BankURI bankURI = BankURI.Create(items[2]);
+                BankPattern bankPattern = BankPattern.Create(items[3]);
+                BankIndex bankBuy = BankIndex.Create(Convert.ToInt32(items[4]));
+                BankIndex bankSell = BankIndex.Create(Convert.ToInt32(items[5]));
 
-            return new BankInfo(bankID, bankName, bankURI, bankPattern, bankBuy, bankSell);
+                return new BankInfo(bankID, bankName, bankURI, bankPattern, bankBuy, bankSell);
+            }
+            else
+            {
+                throw new Exception("Wrong data in file");
+            }
+
         }
     }
 }
