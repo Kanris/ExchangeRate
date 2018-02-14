@@ -104,5 +104,22 @@ namespace ExchangeRateLibrary
 
             return false;
         }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 17;
+
+                hash = hash * 23 + this.ID.GetHashCode();
+                hash = hash * 23 + this.Name.GetHashCode();
+                hash = hash * 23 + this.URI.GetHashCode();
+                hash = hash * 23 + this.Pattern.GetHashCode();
+                hash = hash * 23 + this.Buy.GetHashCode();
+                hash = hash * 23 + this.Sell.GetHashCode();
+
+                return hash;
+            }
+        }
     }
 }
