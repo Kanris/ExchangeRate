@@ -89,5 +89,20 @@ namespace ExchangeRateLibrary
             if (ReferenceEquals(param, null))
                 throw new ArgumentNullException($"{paramName} is null.");
         }
+
+        public override bool Equals(object obj)
+        {
+            var bankInfo = obj as BankInfo;
+
+            if (ReferenceEquals(bankInfo, null))
+                return false;
+
+            if (bankInfo.ID.Equals(this.ID) && bankInfo.Name.Equals(this.Name) &&
+                bankInfo.URI.Equals(this.URI) && bankInfo.Pattern.Equals(this.Pattern) &&
+                bankInfo.Buy.Equals(this.Buy) && bankInfo.Sell.Equals(this.Sell))
+                return true;
+
+            return false;
+        }
     }
 }
