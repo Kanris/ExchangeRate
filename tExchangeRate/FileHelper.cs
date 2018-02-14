@@ -12,11 +12,13 @@ namespace tExchangeRate
     {
         private static string path = "BanksInfo.csv";
 
+        //write bankInfo in file
         public static bool WriteInFile(BankInfo bankInfo)
         {
-            if (ReferenceEquals(bankInfo, null))
+            if (ReferenceEquals(bankInfo, null)) //if bankinfo is null return false
                 return false;
 
+            //add bankinfo in file
             using (var writer = new StreamWriter(new FileStream(path, FileMode.Append, FileAccess.Write)))
             {
                 writer.WriteLine(bankInfo.ToString());
@@ -25,6 +27,7 @@ namespace tExchangeRate
             return true;
         }
 
+        //read all info from file
         public static List<BankInfo> ReadFromFile()
         {
             var bankInfoArray = new List<BankInfo>();
@@ -43,13 +46,14 @@ namespace tExchangeRate
             return bankInfoArray;
         }
 
+        //delete line from file
         public static bool DeleteFromFile(BankInfo bankInfo)
         {
-            if (ReferenceEquals(bankInfo, null))
+            if (ReferenceEquals(bankInfo, null)) //if bankinfo is null return false
                 return false;
 
-            var lines = new List<string>();
-            var line = string.Empty;
+            var lines = new List<string>(); 
+            var line = string.Empty; //line from file
 
             using (var reader = new StreamReader(path))
             {
@@ -59,9 +63,9 @@ namespace tExchangeRate
                 }
             }
 
-            lines.RemoveAll(x => ( Convert.ToInt32((x.Split(',').ToArray())[0]) == bankInfo.ID));
+            lines.RemoveAll(x => ( Convert.ToInt32((x.Split(',').ToArray())[0]) == bankInfo.ID)); //remove line with the same ID
 
-            using (var outfile = new StreamWriter(path))
+            using (var outfile = new StreamWriter(path)) //write back all info
             {
                 foreach (var item in lines)
                     outfile.WriteLine(item);
@@ -74,7 +78,7 @@ namespace tExchangeRate
         {
             var items = lineFromFile.Split(',');
 
-            items = items.Select(x => x.Trim()).ToArray();
+            items = items.Select(x => x.Trim()).ToArray(); //remove spaces in words
             items = items.Where(x => !String.IsNullOrEmpty(x)).ToArray(); //remove empty items
 
             if (items.Length == 6)
